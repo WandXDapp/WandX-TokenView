@@ -27,7 +27,12 @@ def index(request):
 		{'name': 'Monaco', 'short': 'MCO', 'address': '0xb63b606ac810a52cca15e44bb630fd42d8d1d83d', 'twitterHandle': 'monaco_card', 'fbHandle': 'MonacoCardOfficial', 'redditHandle': 'MonacoCard'},
 		{'name': 'Decentraland', 'short': 'DNT', 'address': '0x0f5d2fb29fb7d3cfee444a200298f468908cc942', 'twitterHandle': 'decentraland', 'fbHandle': 'decentraland', 'redditHandle': 'decentraland'},
 		{'name': 'Bancor', 'short': 'BNT', 'address': '0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c', 'twitterHandle': 'bancornetwork', 'fbHandle': 'bancor', 'redditHandle': 'Bancor'},
-		{'name': 'Ethos', 'short': 'ETHOS', 'address': '0x5af2be193a6abca9c8817001f45744777db30756', 'twitterHandle': 'ethos_io', 'fbHandle': 'ethosplatform', 'redditHandle': 'ethos_io'}
+		{'name': 'Ethos', 'short': 'ETHOS', 'address': '0x5af2be193a6abca9c8817001f45744777db30756', 'twitterHandle': 'ethos_io', 'fbHandle': 'ethosplatform', 'redditHandle': 'ethos_io'},
+		{'name': 'WandX', 'short': 'WAND', 'address': '0x27f610bf36eca0939093343ac28b1534a721dbb4', 'twitterHandle': 'WandXDapp', 'fbHandle': 'wandx.co', 'redditHandle': 'wandX'},
+		{'name': 'Bounty0x', 'short': 'BNTY', 'address': '0xd2d6158683aee4cc838067727209a0aaf4359de3', 'twitterHandle': 'Bounty0x', 'fbHandle': '', 'redditHandle': 'Bounty0x'},
+		{'name': 'FidentiaX', 'short': 'FDX', 'address': '0x52a7cb918c11a16958be40cba7e31e32a499a465', 'twitterHandle': 'fidentiaX', 'fbHandle': 'fidentiaX', 'redditHandle': 'fidentiax'},
+		{'name': 'Wings', 'short': 'WINGS', 'address': '0x667088b212ce3d06a1b553a7221E1fD19000d9aF', 'twitterHandle': 'wingsplatform', 'fbHandle': '', 'redditHandle': 'WingsDAO'},
+		{'name': 'Metal', 'short': 'MTL', 'address': '0x667088b212ce3d06a1b553a7221E1fD19000d9aF', 'twitterHandle': 'metalpaysme', 'fbHandle': 'metalpaysme', 'redditHandle': 'MetalPay'}
 	];
 
 	return render(request, 'index.html', {'tokens': tokens})

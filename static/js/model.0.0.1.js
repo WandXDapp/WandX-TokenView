@@ -50,7 +50,12 @@ function Tokens() {
 		{'name': 'Monaco', 'short': 'MCO', 'address': '0xb63b606ac810a52cca15e44bb630fd42d8d1d83d'},
 		{'name': 'Decentraland', 'short': 'DNT', 'address': '0x0f5d2fb29fb7d3cfee444a200298f468908cc942'},
 		{'name': 'Bancor Network', 'short': 'BNT', 'address': '0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c'},
-		{'name': 'Ethos', 'short': 'ETHOS', 'address': '0x5af2be193a6abca9c8817001f45744777db30756'}
+		{'name': 'Ethos', 'short': 'ETHOS', 'address': '0x5af2be193a6abca9c8817001f45744777db30756'},
+		{'name': 'Wand Token', 'short': 'WAND', 'address': '0x27f610bf36eca0939093343ac28b1534a721dbb4'},
+		{'name': 'Bounty0x Token', 'short': 'BNTY', 'address': '0xd2d6158683aee4cc838067727209a0aaf4359de3'},
+		{'name': 'FidentiaX', 'short': 'FDX', 'address': '0x52a7cb918c11a16958be40cba7e31e32a499a465'},
+		{'name': 'Wings', 'short': 'WINGS', 'address': '0x667088b212ce3d06a1b553a7221E1fD19000d9aF'},
+		{'name': 'Metal', 'short': 'MTL', 'address': '0x667088b212ce3d06a1b553a7221E1fD19000d9aF'}
 	];
 
 	$.each(tokens, function(i, key){
