@@ -1,8 +1,3 @@
-# Setup Project
-django-admin startproject tokenview
-python manage.py migrate
-python manage.py startapp home
-
 # README #
 
 This project was generated with Django 2 and Angular
@@ -12,51 +7,9 @@ This project was generated with Django 2 and Angular
 * Quick summary: Token View panel to view different token's info and social feeds
 * Version: 0.1
 
-### Scripts included ###
-
-* AngularJS
-* Angular Strap
-* Bootstrap
-* Bootstrap Daterangepicker
-* Bootstrap Datetimepicker
-* Fastclick
-* Font Awesome
-* Gentella
-* iCheck
-* jQuery
-* moment.js
-* NProgress
-
-### How do I get set up? ###
-
-* Summary of set up
-Download the project as zip file and extract in place of your choice.
-Install all dependencies.
-Once you have all the dependencies installed in your system simple run project.py file.
-Command: python project.py
-* Configuration
-You will be asked to setup your company when you run the application for first time
-* Dependencies
-** Python 2.7.10 or later
-** Python Django
-** Python Jinja2
-** PyMySQL
-** MySQLClient
-** PyPiWin32
-* Database configuration
-There is a database database_setup.py file included in the project to assist with database setup. Run that file to create a blank database.
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
 ### Ubuntu Server Setup ###
 
-Steps to deploy the application on a ubuntu server. These setups assume you have a clean image of ubuntu with nothing installed.
+Steps to deploy the application on a ubuntu server. These setups assume you have a clean image of ubuntu with nothing installed. Ensure you have port 80 opened on the server.
 
 * SSH into server: ssh -i "vikas3434.pem" ubuntu@34.203.225.0
 * Run following commands to install dependencies
@@ -81,6 +34,8 @@ export LC_CTYPE="en_US.UTF-8"
 pip install django
 pip install gunicorn
 git clone https://github.com/SecureBlocks/WandX-TokenView
+cd /home/ubuntu/WandX-TokenView
+chmod +x gunicorn.sh
 deactivate
 
 sudo apt-get install nginx
@@ -97,8 +52,23 @@ proxy_set_header X-Forwarded-Server $host;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 proxy_pass http://127.0.0.1:8000;
 ************************
+add a new location with below code
+************************
+location /static/ {
+	alias /home/ubuntu/WandX-TokenView/static/;
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+}
+************************
 sudo service nginx start
 sudo service nginx stop
 sudo service nginx start
 
+./gunicorn.sh
 
+### Run project after server restart ###
+
+cd /home/ubuntu/WandX-TokenView
+./gunicorn.sh
+sudo service nginx start
