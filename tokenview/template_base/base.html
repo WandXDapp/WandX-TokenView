@@ -1,0 +1,295 @@
+
+<!-- Bootstrap -->
+<link href="static/vendors/genetella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="static/vendors/genetella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Custom Theme Style -->
+<link href="static/vendors/genetella/build/css/custom.min.css" rel="stylesheet">
+
+<style>
+  [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak { display: none !important; }
+  .right_col { margin-left: 0px !important; }
+  .panel_toolbox { min-width: 0px !important; }
+  .overflow-box { min-height: 500px; max-height: 500px; overflow-y: auto; }
+  .hidden { display: none; }
+  .show { display: block !important; }
+  .fixed-width { padding-right: 0px; width: 20px; }
+  .no-left-padding { padding-left: 0px; }
+</style>
+  
+<div class="nav-md" ng-app="tokenview" ng-controller="indexController">
+
+  <div id="fb-root"></div>
+  <script>
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+  
+  <div class="container body">
+    <div class="main_container">
+      
+      <!-- page content -->
+      <div class="right_col" role="main">
+        
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="dashboard_graph">
+
+              <div class="row x_title">
+                <div class="col-md-6">
+                  <h3>Token View</h3>
+                </div>
+                
+                <div class="title_right">
+                  <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search token..." ng-model="tokenSearch" bs-typeahead bs-options="token as token.displayName for token in tokens" ng-change="tokenSelector(tokenSearch)">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="tokenSelector(tokenSearch)">Go!</button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-7 col-sm-7 col-xs-12" style="padding-top: 35px;" id="ratechart">
+                <!-- <div id="chart_plot_01" class="demo-placeholder"></div> -->
+                {% for token in tokens %}
+                  <div class="hidden" id="rate_{{token.short}}">
+                    <div class="coinmarketcap-currency-widget" data-currency="{{token.name}}" data-base="USD"  data-secondary="BTC"></div>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="col-md-5 col-sm-5 col-xs-12 bg-white" >
+                <div class="x_title" ng-cloak>
+                  <h2>[{selectedToken.displayName}]</h2>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-6">
+                  <div class="row" style="text-transform: capitalize;" ng-cloak>
+                    <div class="col-xs-3">Address</div>
+                    <div class="col-xs-9">
+                      <div class="row">
+                        <div class="col-xs-1 fixed-width">:</div>
+                        <div class="col-xs-11 no-left-padding">[{tokenInfo.address}]</div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-3">Price</div>
+                    <div class="col-xs-9">
+                      <div class="row">
+                        <div class="col-xs-1 fixed-width">:</div>
+                        <div class="col-xs-11 no-left-padding">[{tokenInfo.price.currency}] [{tokenInfo.price.rate}] ([{tokenInfo.price.diff}]%)</div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-3">Total Supply</div>
+                    <div class="col-xs-9">
+                      <div class="row">
+                        <div class="col-xs-1 fixed-width">:</div>
+                        <div class="col-xs-11 no-left-padding">[{tokenInfo.totalSupplyInWords}] [{selectedToken.short}]</div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-3">Decimals</div>
+                    <div class="col-xs-9">
+                      <div class="row">
+                        <div class="col-xs-1 fixed-width">:</div>
+                        <div class="col-xs-11 no-left-padding">[{tokenInfo.decimals}]</div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-3">Owner</div>
+                    <div class="col-xs-9">
+                      <div class="row">
+                        <div class="col-xs-1 fixed-width">:</div>
+                        <div class="col-xs-11 no-left-padding">[{tokenInfo.owner}]</div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-3">Transfers</div>
+                    <div class="col-xs-9">
+                      <div class="row">
+                        <div class="col-xs-1 fixed-width">:</div>
+                        <div class="col-xs-11 no-left-padding">[{tokenInfo.transfersCount}]</div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-3">Transfers</div>
+                    <div class="col-xs-9">
+                      <div class="row">
+                        <div class="col-xs-1 fixed-width">:</div>
+                        <div class="col-xs-11 no-left-padding">[{tokenInfo.transfersCount}]</div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-3">Holders</div>
+                    <div class="col-xs-9">
+                      <div class="row">
+                        <div class="col-xs-1 fixed-width">:</div>
+                        <div class="col-xs-11 no-left-padding">[{tokenInfo.holdersCount}]</div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-3">Total In</div>
+                    <div class="col-xs-9">
+                      <div class="row">
+                        <div class="col-xs-1 fixed-width">:</div>
+                        <div class="col-xs-11 no-left-padding">[{tokenInfo.totalInWords}]</div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-3">Total Out</div>
+                    <div class="col-xs-9">
+                      <div class="row">
+                        <div class="col-xs-1 fixed-width">:</div>
+                        <div class="col-xs-11 no-left-padding">[{tokenInfo.totalOutWords}]</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="clearfix"></div>
+            </div>
+          </div>
+
+        </div>
+        <br />
+
+        {% for token in tokens %}
+          <div class="row hidden" id="feeds_{{token.short}}">
+            
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Reddit Feed</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+
+                {% if token.redditHandle != '' %}
+                  <div class="x_content overflow-box" id="reddit_{{token.redditHandle}}">
+                    <!-- <script src="https://www.reddit.com/user/{{token.redditHandle}}/submitted.embed?limit=20&sort=hot" type="text/javascript"></script> -->
+                    <!-- <div class="reddit_feed"></div> -->
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Start to do list -->
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Twitter Feed</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content overflow-box">
+                  <a class="twitter-timeline" href="https://twitter.com/{{token.twitterHandle}}">Tweets by EOS_io</a>
+                  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+              </div>
+            </div>
+            <!-- End to do list -->
+            
+            <!-- start of weather widget -->
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Facebook Feed</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content overflow-box">
+                  <div class="fb-page" data-href="https://www.facebook.com/{{token.fbHandle}}/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"></div>
+                </div>
+              </div>
+            </div>
+            <!-- end of weather widget -->
+          </div>
+        {% endfor %}
+      <!-- /page content -->
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden" id="tempdiv">dd</div>
+
+  [{showFirst()}]
+
+  <!-- jQuery -->
+  <script src="static/vendors/genetella/vendors/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="static/vendors/genetella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Flot -->
+  <script src="static/vendors/genetella/vendors/Flot/jquery.flot.js"></script>
+  <script src="static/vendors/genetella/vendors/Flot/jquery.flot.time.js"></script>
+  <script src="static/vendors/genetella/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+  <script src="static/vendors/genetella/vendors/flot.curvedlines/curvedLines.js"></script>
+  <!-- DateJS -->
+  <script src="static/vendors/genetella/vendors/DateJS/build/date.js"></script>
+  
+  <!-- Custom Theme Scripts -->
+  <script src="static/vendors/genetella/build/js/custom.min.js"></script>
+
+  <!-- AngularJS -->
+  <script src="static/vendors/angular/angular.min.js"></script>
+  <!-- Angular Strap -->
+  <script src="static/vendors/angular-strap-master/dist/angular-strap.min.js"></script>
+  <script src="static/vendors/angular-strap-master/dist/angular-strap.tpl.min.js"></script>
+
+  <!-- Model JS -->
+  <script src="static/js/numberToWords.js"></script>
+  <script src="static/js/model.0.0.1.js"></script>
+  <!-- API Calls -->
+  <script src="static/js/apiCalls.0.0.1.js"></script>
+
+  <script src="static/js/indexController.0.0.1.js"></script>
+  <script src="static/js/indexService.0.0.1.js"></script>
+
+
+  <script>
+  $(document).ready(function() {
+    
+    /* Reddit lazy load hack */
+    document.write = function(text) {
+      {% for token in tokens %}
+        {% if token.redditHandle != '' %}
+          if (text.indexOf("{{token.redditHandle}}.reddit.com") > 0){
+            $("#reddit_{{token.redditHandle}}").html(text);
+          }
+        {% endif %}
+      {% endfor %}
+    };
+
+    {% for token in tokens %}
+      {% if token.redditHandle != '' %}
+        var oScript_{{token.redditHandle}} = document.createElement("script");
+        oScript_{{token.redditHandle}}.src = "https://www.reddit.com/r/{{token.redditHandle}}.embed?limit=9";
+        var call = oScript_{{token.redditHandle}}.src;
+        document.body.appendChild(oScript_{{token.redditHandle}});
+      {% endif %}
+    {% endfor %}
+
+});
+</script>
+
+  
+</div>
