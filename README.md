@@ -11,7 +11,6 @@ This project was generated with Django 2 and Angular
 
 Steps to deploy the application on a ubuntu server. These setups assume you have a clean image of ubuntu with nothing installed. Ensure you have port 80 opened on the server.
 
-* SSH into server: ssh -i "vikas3434.pem" ubuntu@34.203.225.0
 * Run following commands to install dependencies
 
 sudo apt-get update
