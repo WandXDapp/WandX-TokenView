@@ -32,7 +32,7 @@ export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 pip install django
 pip install gunicorn
-git clone https://github.com/SecureBlocks/WandX-TokenView
+git clone https://github.com/WandXDapp/WandX-TokenView.git
 cd /home/ubuntu/WandX-TokenView
 chmod +x gunicorn.sh
 deactivate
